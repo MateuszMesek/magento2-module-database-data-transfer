@@ -34,7 +34,10 @@ class TransferData implements TransferDataInterface
 
         foreach ($matchColumns as $matchColumn) {
             $joinConditions[] = "target.$matchColumn = `source`.$matchColumn";
-            $whereConditions[] = "NOT(target.$matchColumn <=> source.$matchColumn)";
+        }
+
+        foreach ($dataColumns as $dataColumn) {
+            $whereConditions[] = "NOT(target.$dataColumn <=> source.$dataColumn)";
         }
 
         $select = $connection->select()
