@@ -1,0 +1,19 @@
+{
+    "name": "mateuszmesek-magento2/module-database-data-transfer",
+    "description": "N/A",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*"
+    },
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MateuszMesek\\DatabaseDataTransfer\\": "src"
+        }
+    }
+}
