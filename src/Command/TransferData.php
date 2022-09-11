@@ -34,7 +34,7 @@ class TransferData implements TransferDataInterface
 
         foreach ($matchColumns as $matchColumn) {
             $joinConditions[] = "target.$matchColumn = `source`.$matchColumn";
-            $whereConditions[] = "target.$matchColumn <=> source.$matchColumn";
+            $whereConditions[] = "NOT(target.$matchColumn <=> source.$matchColumn)";
         }
 
         $select = $connection->select()
@@ -48,7 +48,7 @@ class TransferData implements TransferDataInterface
                 implode(' AND ', $joinConditions),
                 []
             )
-            ->where(implode(' AND ', $whereConditions))
+            ->where(implode(' OR ', $whereConditions))
         ;
 
         $queries[] = $connection->insertFromSelect(
